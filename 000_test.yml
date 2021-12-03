@@ -1,0 +1,6 @@
+- name: Play 1
+  hosts: all
+  tasks:
+    - name: task 1
+      debug:
+        msg: The OS is based on: {{ ansible_os_family }}

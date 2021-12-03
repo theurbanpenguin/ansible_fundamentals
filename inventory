@@ -1,0 +1,7 @@
+[ubuntu]
+127.0.0.1
+[centos]
+<your centos ip>
+[linux:children]
+ubuntu
+centos

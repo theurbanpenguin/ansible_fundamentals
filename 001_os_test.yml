@@ -1,0 +1,14 @@
+- name: Install required software
+  hosts: all
+  become: true
+  gather_facts: true
+  tasks:
+    - name: update the apt cache on Debian systems if older than a day
+      apt:
+        cache_valid_time: 86400
+        update_cache: true
+      when: ansible_os_family == 'Debian'  
+    - name:
+      package:
+        name: tree
+        state: present
