@@ -1,0 +1,19 @@
+---
+- name: Manage Apache Web Server
+  hosts: linux
+  become: true
+  gather_facts: false
+  tasks:
+    - name: Install the Apache Web Server Package
+      package:
+        name: "{{ apache_pkg }}"
+        state: present
+    - name: add web content
+      copy:
+        src: files/
+        dest: /var/www/html/
+     - name: Start and enable Apache web server
+      service:          
+        name: "{{ apache_svc }}"
+        state: started
+        enabled: true  
