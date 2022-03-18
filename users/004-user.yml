@@ -1,0 +1,17 @@
+- name: Create and Manage Users
+  hosts: all
+  become: true
+  gather_facts: false
+  tasks:
+    - name: Create User Account
+      user:
+        name: "{{ user_account | default('devops') }}"
+        state: present
+        shell: /bin/bash
+      when: user_create == 'yes'
+    - name: Delete User Account
+      user:
+        name: "{{ user_account | default('devops') }}"
+        state: absent
+        remove: true
+      when: user_create == 'no'
