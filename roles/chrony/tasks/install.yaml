@@ -1,0 +1,6 @@
+---
+- name: Install the Chrony Time Server / Client
+  package:
+    name: chrony
+    state: present
+

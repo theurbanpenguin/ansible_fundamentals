@@ -1,0 +1,7 @@
+---
+# tasks file for chrony
+- name: import vars
+  include_vars: "{{ ansible_os_family }}.yaml"
+- import_tasks: install.yaml
+- import_tasks: config.yaml
+- import_tasks: service.yaml

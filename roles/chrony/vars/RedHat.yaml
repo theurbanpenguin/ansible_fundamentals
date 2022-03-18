@@ -1,0 +1,5 @@
+---
+chrony_svc: chronyd
+chrony_conf: /etc/chrony.conf
+timeserver: 0.centos.pool.ntp.org
+

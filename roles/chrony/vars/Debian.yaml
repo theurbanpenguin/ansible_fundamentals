@@ -1,0 +1,5 @@
+---
+chrony_svc: chrony
+chrony_conf: /etc/chrony/chrony.conf
+timeserver: 0.ubuntu.pool.ntp.org
+

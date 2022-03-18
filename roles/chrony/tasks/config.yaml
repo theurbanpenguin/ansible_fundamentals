@@ -1,0 +1,6 @@
+---
+- name: Configure the Chrony Time Service
+  template:
+    dest: "{{ chrony_conf }}"
+    src: templates/chrony.conf.j2
+  notify: restart_chrony

@@ -1,0 +1,6 @@
+---
+- name: Start and Enable Chrony Time Service
+  service:
+    name: "{{ chrony_svc }}"
+    state: started
+    enabled: true
