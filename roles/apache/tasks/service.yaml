@@ -1,0 +1,7 @@
+---
+- name: Start and enable apache web server
+  service:
+    name: "{{ apache_svc }}"
+    state: started
+    enabled: true
+

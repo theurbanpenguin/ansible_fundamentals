@@ -1,0 +1,5 @@
+---
+- name: Add web content
+  copy:
+    src: files/
+    dest: /var/www/html
