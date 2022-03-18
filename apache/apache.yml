@@ -12,7 +12,7 @@
       copy:
         src: files/
         dest: /var/www/html/
-     - name: Start and enable Apache web server
+    - name: Start and enable Apache web server
       service:          
         name: "{{ apache_svc }}"
         state: started
