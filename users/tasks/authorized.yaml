@@ -1,0 +1,7 @@
+---
+- name: Allow SSH Authentication key for local account to new remote account
+  authorized_key:
+    user: "{{ user_account | default('devops') }}"
+    state: present
+    manage_dir: true
+    key: "{{ lookup('file', '/home/tux/.ssh/id_rsa.pub') }}"

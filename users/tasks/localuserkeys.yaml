@@ -1,0 +1,6 @@
+---
+- name: Manage Local User SSH Key
+  user:
+    name: "{{ lookup('env', 'USER') }}"
+    state: present
+    generate_ssh_key: true

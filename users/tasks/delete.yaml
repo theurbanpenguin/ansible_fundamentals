@@ -1,0 +1,6 @@
+---
+- name: Delete User Account
+  user:
+    name: "{{ user_account | default('devops') }}"
+    state: absent
+    remove: true

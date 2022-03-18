@@ -1,0 +1,5 @@
+---
+- name: Delete sudoers file for user                           
+  file:                                                           
+    path: /etc/sudoers.d/{{ user_account | default('devops') }}
+    state: absent

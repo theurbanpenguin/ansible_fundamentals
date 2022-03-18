@@ -1,0 +1,6 @@
+---
+- name: Add sudoers entry for new user account
+  copy:
+    dest: /etc/sudoers.d/{{ user_account | default('devops') }}
+    content: "{{ user_account | default('devops') }} ALL=(root) NOPASSWD: ALL"
+    validate: visudo -cf %s

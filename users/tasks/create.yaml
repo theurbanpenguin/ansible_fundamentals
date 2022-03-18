@@ -1,0 +1,9 @@
+---
+- name: 'Create User Account'
+  user:
+    name: "{{ user_account | default('devops') }}"
+    state: present
+    shell: /bin/bash
+    password: "{{ '[Password1]' | password_hash('sha512') }}"
+    update_password: on_create
+

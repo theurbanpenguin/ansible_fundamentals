@@ -1,0 +1,29 @@
+---
+- name: Manage Local User Keys
+  hosts: localhost
+  become: false
+  gather_facts: false
+  tasks:
+    - name: Import task to set local SSH keys
+      import_tasks: tasks/localuserkeys.yaml
+- name: Manage User Account
+  hosts: all
+  become: true
+  gather_facts: false
+  tasks:
+    - name: Manage User Create
+      block:
+        - name: Create new user
+          import_tasks: tasks/create.yaml
+        - name: Copy ssh id to remote account
+          import_tasks: tasks/authorized.yaml 
+        - name: Create Sudoers entry for new users
+          import_tasks: tasks/createsudoers.yaml 
+      when: user_create == 'yes'
+    - name: Manage Delete User
+      block:
+        - name: Delete user
+          import_tasks: tasks/delete.yaml
+        - name: Delete Sudoers Entry
+          import_tasks: tasks/deletesudoers.yaml
+      when: user_create == 'no'
