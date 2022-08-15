@@ -11,3 +11,4 @@
         state: present
         cron_file: ls-etc
         job: 'ls -lh /etc/ > /tmp/etc'
+        user: root
