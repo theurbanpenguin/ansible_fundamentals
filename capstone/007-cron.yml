@@ -1,0 +1,13 @@
+---
+- name: cron
+  hosts: redhat
+  become: true
+  gather_facts: false
+  tasks:
+    - name: create cron job
+      cron:
+        name: list-etc
+        minutes: 10
+        state: present
+        cron_file: ls-etc
+        job: 'ls -lh /etc/ > /tmp/etc'
