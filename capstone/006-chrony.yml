@@ -9,9 +9,9 @@
         name: chrony
         state: present
     - name: add chrony config
-        template:
-          dest: /etc/chrony.conf
-          src: "{{ lookup('env', 'HOME') }}/chrony.conf.j2"
+      template:
+        dest: /etc/chrony.conf
+        src: "{{ lookup('env', 'HOME') }}/chrony.conf.j2"
         notify: restart_chrony
     - name: manage timeserver
       service:
