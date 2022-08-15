@@ -1,0 +1,12 @@
+---
+- name: test
+  hosts: redhat
+  become: true
+  gather_facts: false
+  pre_tasks:
+    - name: hello
+      debug:
+        msg: hello world
+  roles:
+    - apache
+    - chrony
