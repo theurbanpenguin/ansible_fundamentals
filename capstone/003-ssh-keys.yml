@@ -1,0 +1,19 @@
+---
+- name: manage local keys
+  hosts: localhost
+  become: false
+  gather_facts: false
+  tasks:
+    - name: generate key pair
+      user:
+        generate_ssh_key: true
+- name: copy key pair
+  hosts: 192.168.56.202
+  become: true
+  gather_facts: false
+  tasks:
+    - name: copy public key
+      authorized_key:
+        user: vagrant
+        state: present
+        key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/id_rsa.pub') }}"
