@@ -1,0 +1,20 @@
+---
+- name: manage apache httpd
+  hosts: redhat
+  become: true
+  gather_facts: false
+  tasks:
+    - name: install apache web server
+      package:
+        name: httpd
+        state: present
+    - name: deliver content
+      copy:
+        path: /var/www/html/
+        src: /web/
+        recurse: true
+    - name: start and enable service
+      service:
+        name: httpd
+        state: started
+        enabled: true
