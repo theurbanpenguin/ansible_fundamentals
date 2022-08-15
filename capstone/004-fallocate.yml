@@ -1,0 +1,11 @@
+---
+- name: fallocate
+  hosts: redhat
+  become: true
+  gather_facts: false
+  tasks:
+    - name: create disk file
+      command:
+        cmd: fallocate -l 1G /root/disk1
+        creates: /root/disk1
+
