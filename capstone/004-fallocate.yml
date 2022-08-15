@@ -21,6 +21,16 @@
       filesystem:
         device: /dev/loop10p1
         fstype: xfs
-    - name: mount
-
+    - name: create mount point
+      file:
+        path: /data
+        state: directory
+        owner: root
+        group: wheel
+        mode: '3770'
+    - name: mount fs
+      mount:
+        path: /data
+        state: mounted
+        fstype: xfs
 
