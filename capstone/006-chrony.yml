@@ -12,7 +12,7 @@
       template:
         dest: /etc/chrony.conf
         src: "{{ lookup('env', 'HOME') }}/chrony.conf.j2"
-        notify: restart_chrony
+      notify: restart_chrony
     - name: manage timeserver
       service:
         name: chronyd
