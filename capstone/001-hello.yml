@@ -1,0 +1,9 @@
+---
+- name: hello play
+  hosts: localhost
+  become: false
+  gather_facts: false
+  tasks:
+    - name: say hello
+      debug:
+        msg: Hello world

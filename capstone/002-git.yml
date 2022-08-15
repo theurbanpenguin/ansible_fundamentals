@@ -1,0 +1,10 @@
+---
+- name: git
+  hosts: localhost
+  become: false
+  gather_facts: false
+  tasks:
+    - name: clone
+      git:
+        repo: https://github.com/theurbanpenguin/ansible_fundamentals.git
+        dest: "{{ lookup('env', 'HOME') }}/ansible_fundamentals"
