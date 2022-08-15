@@ -12,4 +12,15 @@
       command:
         cmd: losetup /dev/loop10 /root/disk1
         creates: /dev/loop10
+    - name: partition
+      parted:
+        device: /dev/loop10
+        number: 1
+        state: present
+    - name: filesystem
+      filesystem:
+        device: /dev/loop10p1
+        fstype: xfs
+    - name: mount
+
 
