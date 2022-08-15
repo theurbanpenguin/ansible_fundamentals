@@ -6,6 +6,7 @@
   tasks:
     - name: generate key pair
       user:
+        name: "{{ lookup('env', 'USER') }}"
         generate_ssh_key: true
 - name: copy key pair
   hosts: 192.168.56.202
