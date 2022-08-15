@@ -11,7 +11,7 @@
     - name: deliver content
       copy:
         dest: /var/www/html/
-        src: "{{ lookup('env', 'HOME'}}/web/"
+        src: "{{ lookup('env', 'HOME') }}/web/"
     - name: start and enable service
       service:
         name: httpd
