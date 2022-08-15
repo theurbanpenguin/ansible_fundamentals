@@ -1,5 +1,5 @@
 ---
-- name: fallocate
+- name: disks
   hosts: redhat
   become: true
   gather_facts: false
@@ -8,4 +8,8 @@
       command:
         cmd: fallocate -l 1G /root/disk1
         creates: /root/disk1
+    - name: link with losetup
+      command:
+        cmd: losetup /dev/loop10 /root/disk1
+        creates: /dev/loop10
 
