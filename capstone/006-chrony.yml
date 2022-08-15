@@ -1,0 +1,25 @@
+---
+- name: manage time server
+  hosts: redhat
+  become: true
+  gather_facts: false
+  tasks:
+    - name: install chrony time server
+      package:
+        name: chrony
+        state: present
+    - name: add chrony config
+        template:
+          dest: /etc/chrony.conf
+          src: "{{ lookup('env', 'HOME') }}/chrony.conf.j2"
+        notify: restart_chrony
+    - name: manage timeserver
+      service:
+        name: chronyd
+        state: started
+        enabled: true
+  handlers:
+    - name: restart_chrony
+      service:
+        name: chronyd
+        state: restarted
