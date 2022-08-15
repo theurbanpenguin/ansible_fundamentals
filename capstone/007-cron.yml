@@ -7,7 +7,7 @@
     - name: create cron job
       cron:
         name: list-etc
-        minutes: 10
+        minute: 10
         state: present
         cron_file: ls-etc
         job: 'ls -lh /etc/ > /tmp/etc'
