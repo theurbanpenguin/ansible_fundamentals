@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  redhat:
+    image: redhat
+    container_name: redhat
+    hostname: redhat
+    networks:
+      - mynetwork
+
+  ubuntu:
+    image: ubuntu
+    container_name: ubuntu
+    hostname: ubuntu
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.20.0.0/16
+          gateway: 172.20.0.1
