@@ -2,6 +2,10 @@ version: '3'
 
 services:
   redhat:
+    build:
+      context: ./redhat
+      dockerfile: Dockerfile
+      image: redhat
     image: redhat
     container_name: redhat
     hostname: redhat
@@ -9,6 +13,10 @@ services:
       - mynetwork
 
   ubuntu:
+    build:
+      context: ./ubuntu
+      dockerfile: Dockerfile
+      image: ubuntu
     image: ubuntu
     container_name: ubuntu
     hostname: ubuntu
