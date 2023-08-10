@@ -1,6 +1,5 @@
----
 - name: Manage Apache Web Server
-  hosts: linux
+  hosts: all
   become: true
   gather_facts: false
   tasks:
@@ -8,13 +7,28 @@
       package:
         name: "{{ apache_pkg }}"
         state: present
+
+    - name: Server Tokens
+      lineinfile:
+        path: "{{ apache_conf }}"
+        regexp: "^ServerTokens .*$"
+        insertafter: "^ServerRoot"
+        line: ServerTokens OS
+      notify: RestartApache
+
     - name: add web content
       copy:
-        src: files/
+        src: www/
         dest: /var/www/html/
+
     - name: Start and enable Apache web server
-      service:          
+      service:
         name: "{{ apache_svc }}"
         state: started
         enabled: true
 
+  handlers:
+    - name: RestartApache
+      service:
+        name: "{{ apache_svc }}"
+        state: restarted
