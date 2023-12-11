@@ -3,7 +3,6 @@
   become: true
   gather_facts: false
   tasks:
-    -
     - name: Ensure that UFW Firewall is not installed
       package:
         name: ufw
