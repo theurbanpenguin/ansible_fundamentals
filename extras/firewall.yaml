@@ -6,7 +6,7 @@
     - name: Automate searching for bad logins
       cron:
         name: ssh_root_attempts
-        minute: 0
+        minute: '0'
         user: root
         cron_file: ssh_root_attempts
         state: present
