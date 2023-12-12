@@ -1,4 +1,18 @@
-- name: Manage Firewalld
+- name: Create automated cron job to examine journal log
+  hosts: localhost
+  become: true
+  gather_facts: false
+  tasks:
+    - name: Automate searching for bad logins
+      cron:
+        name: ssh_root_attempts
+        minute: 0
+        user: root
+        cron_file: ssh_root_attempts
+        state: present
+        job: journalctl -u ssh -g "Failed password for root" | grep -Eo '([0-9]{1,3}\.){3}[0-9]{1,3}' | sort -u > ~tux/server
+
+- name: Manage Firewalld and Block Entries
   hosts: all
   become: true
   gather_facts: false
@@ -19,19 +33,10 @@
         state: started
         enabled: true
 
-    - name: Automate searching for bad logins
-      cron:
-        name: ssh_root_attempts
-        minute: 0
-        user: root
-        cron_file: ssh_root_attempts
-        state: present
-        job: journalctl -u ssh -g "Failed password for root" | grep -Eo '([0-9]{1,3}\.){3}[0-9]{1,3}' | sort -u > ~tux/server
-
-    - name: Process Disallowed List
+    - name: Process Disallowed List Blocking Access to Server
       firewalld:
         state: enabled
-        zone: block
+        zone: drop
         permanent: true
         immediate: true
         source: "{{ item }}"
