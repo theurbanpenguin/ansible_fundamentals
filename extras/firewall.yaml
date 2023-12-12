@@ -10,7 +10,10 @@
         user: root
         cron_file: ssh_root_attempts
         state: present
-        job: journalctl -u ssh -g "Failed password for root" | grep -Eo '([0-9]{1,3}\.){3}[0-9]{1,3}' | sort -u > ~tux/server
+        job: >
+          journalctl -u ssh -g "Failed password for root" | 
+          grep -Eo '([0-9]{1,3}\.){3}[0-9]{1,3}' | 
+          sort -u > ~tux/server
 
 - name: Manage Firewalld and Block Entries
   hosts: all
